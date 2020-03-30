@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1072647227023",
+    "firebase_url": "https://goloans03-e1785.firebaseio.com",
+    "project_id": "goloans03-e1785",
+    "storage_bucket": "goloans03-e1785.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072647227023:android:474b539bbbdfbd347e92fa",
+        "android_client_info": {
+          "package_name": "com.project.goloans03"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072647227023-tmg62emvv492l92r56aa70pg8lfu46hp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBTK0O4T71XT2xTqbUqHCz_AvV4lBS9-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072647227023-tmg62emvv492l92r56aa70pg8lfu46hp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

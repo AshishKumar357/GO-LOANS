@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">GO LOAN</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="register">Register</string>
+    <string name="already_registered_login_instead">Already Registered?? Login Instead</string>
+    <string name="goloans_logo_image">GoLoans Logo image</string>
+    <string name="not_registered_register_instead">Not Registered?? Register Instead</string>
+    <string name="login">Login</string>
+    <string name="welcome_to_the_dashboard">Welcome to the DashBoard</string>
+    <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
+    
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Others</item>
+    </string-array>
+
+</resources>
