@@ -1,7 +1,5 @@
 package com.project.goloans03;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,15 +8,33 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Apply1Activity extends AppCompatActivity {
 
     Button proceedbtn;
     EditText applyFName, applyLName;
     AdView mAdView;
+    FirebaseFirestore fstore;
+    FirebaseAuth fauth;
+    String userID;
+    int flag = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +43,48 @@ public class Apply1Activity extends AppCompatActivity {
         proceedbtn= findViewById(R.id.proceedBtn);
         applyFName= findViewById(R.id.applyFName);
         applyLName=findViewById(R.id.applyLName);
+        fstore = FirebaseFirestore.getInstance();
+        fauth = FirebaseAuth.getInstance();
         myad();
+
+        fauth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
+        userID = Objects.requireNonNull(fauth.getCurrentUser()).getUid();
+
+
 
         proceedbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Apply1Activity.this, Apply2Activity.class));
+                final String fname = applyFName.getText().toString().trim();
+                final String lname = applyLName.getText().toString().trim();
+                if (fname.isEmpty()) {
+                    applyFName.setError("First Name Field is Compulsory");
+                } else if (lname.isEmpty()) {
+                    applyLName.setError("Last Name is Compulsory ");
+                } else {
+                    userID = Objects.requireNonNull(fauth.getCurrentUser()).getUid();
+                    DocumentReference documentReference = fstore.collection("Applications").document(userID);
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("First Name", fname);
+                    user.put("Last Name", lname);
+                    user.put("Flag", flag);
+                    documentReference.set(user, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Intent intent = new Intent(getApplicationContext(), Apply2Activity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("TAG", "onFailure: Error " + e.toString());
+                            Toast.makeText(Apply1Activity.this, e.toString() + " ", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
             }
         });
     }

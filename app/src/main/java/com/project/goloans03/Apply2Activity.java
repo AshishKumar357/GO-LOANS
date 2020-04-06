@@ -1,7 +1,5 @@
 package com.project.goloans03;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,15 +8,33 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class Apply2Activity extends AppCompatActivity {
 
     Button NextBtn;
     AdView mAdView;
     EditText applyEmail,applyPhno,applyAddress,applyPincode,applyAdhno,applyPANno;
+    FirebaseFirestore fstore;
+    FirebaseAuth fauth;
+    String userID;
+    int flag = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,16 +47,93 @@ public class Apply2Activity extends AppCompatActivity {
         applyPincode= findViewById(R.id.applyPincode);
         applyAdhno=findViewById(R.id.applyAdhno);
         applyPANno= findViewById(R.id.applyPANno);
+        fstore = FirebaseFirestore.getInstance();
+        fauth = FirebaseAuth.getInstance();
 
         myAd();
         NextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Apply2Activity.this,Apply3Activity.class));
+                final String email = applyEmail.getText().toString().trim();
+                final String phno = applyPhno.getText().toString().trim();
+                final String add = applyAddress.getText().toString();
+                final String pincode = applyPincode.getText().toString().trim();
+                final String aadharNo = applyAdhno.getText().toString().trim();
+                final String panNo = applyPANno.getText().toString().trim();
 
+                if (email.isEmpty() || isEmailValid(email)) {
+                    applyEmail.setError("Email is Badly Formatted");
+
+                } else if (phno.isEmpty() || isValidMobile(phno)) {
+                    applyPhno.setError("Mobile Number Badly Formatted");
+
+                } else if (add.isEmpty()) {
+                    applyAddress.setError("Address Field is Compulsory ");
+
+                } else if (pincode.isEmpty() || isValidPincode(pincode)) {
+                    applyPincode.setError("Please Enter a valid Pincode");
+                } else if (aadharNo.isEmpty() || isValidAadhaarNo(aadharNo)) {
+                    applyPhno.setError("Please Enter a valid Aadhar Number");
+
+                } else if (panNo.isEmpty()) {
+
+                    applyAddress.setError("PAN number Field is Compulsory ");
+                } else {
+                    userID = Objects.requireNonNull(fauth.getCurrentUser()).getUid();
+                    DocumentReference documentReference = fstore.collection("Applications").document(userID);
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Email", email);
+                    user.put("Phone Number", phno);
+                    user.put("Address", add);
+                    user.put("Pincode", pincode);
+                    user.put("Aadhaar Number", aadharNo);
+                    user.put("PAN Number", panNo);
+                    user.put("Flag", flag);
+                    documentReference.set(user, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Intent intent = new Intent(getApplicationContext(), Apply3Activity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("TAG", "onFailure: Error " + e.toString());
+                            Toast.makeText(Apply2Activity.this, e.toString() + " ", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
             }
         });
 
+    }
+
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private boolean isValidMobile(String phone) {
+        if (!Pattern.matches("[a-zA-Z]+", phone)) {
+            return phone.length() == 9;
+        }
+        return false;
+    }
+
+    private boolean isValidPincode(String pin) {
+        if (!Pattern.matches("[a-zA-Z]+", pin)) {
+            return pin.length() == 5;
+        }
+        return false;
+    }
+
+    private boolean isValidAadhaarNo(String adno) {
+        if (!Pattern.matches("[a-zA-Z]+", adno)) {
+            return adno.length() == 10;
+        }
+        return false;
     }
 
     private void myAd() {
