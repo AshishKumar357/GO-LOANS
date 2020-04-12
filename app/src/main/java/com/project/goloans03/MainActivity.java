@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity{
     Long var;
     String flag = "Flag";
     private InterstitialAd mInterstitialAd;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity{
         profilebtn=findViewById(R.id.profile_btn);
         mAdView = findViewById(R.id.adViewMain1);
         mAdView2 = findViewById(R.id.adViewMain2);
+        toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
         mInterstitialAd = new InterstitialAd(MainActivity.this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-4198122205168696~1070741929");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         myad();
 
@@ -90,7 +94,7 @@ public class MainActivity extends AppCompatActivity{
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
-                                } else if (var.equals(Long.valueOf("2"))) {
+                                } else if (var.equals(Long.valueOf("3"))) {
                                     Toast.makeText(getApplicationContext(), "You Have already Applied For Loan", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -107,37 +111,6 @@ public class MainActivity extends AppCompatActivity{
                         }
                     }
                 });
-
-//                        MainActivity.this, new EventListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-//                        assert documentSnapshot != null;
-//                        if(Objects.equals(documentSnapshot.getString(flag), "1"))
-//                        {
-//                            Intent intent = new Intent(getApplicationContext(),Apply2Activity.class);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                            startActivity(intent);
-//                        }
-//                        else if(Objects.equals(documentSnapshot.getString(flag), "2"))
-//                        {
-//                            Intent intent = new Intent(getApplicationContext(),Apply3Activity.class);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                            startActivity(intent);
-//                        }else if(Objects.equals(documentSnapshot.getString(flag), "3"))
-//                        {
-//                            Toast.makeText(getApplicationContext(),"You Have already Applied For Loan",Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                            startActivity(intent);
-//                        }
-//                        else
-//                            startActivity(new Intent(MainActivity.this, Apply1Activity.class));
-//                    }
-//                });
-
             }
         });
     }

@@ -15,14 +15,15 @@
     <string name="submit">Submit</string>
     <string name="amount_of_loan">Amount Of Loan</string>
     <string name="expected_interest_12_18_year">Expected interest 12–18(%/year)</string>
-    <string name="share_my_file_and_contact_information_with_the_lenders">Share my File and Contact Information with the Lenders</string>
-    <string name="i_agree_to_receive_promotional_mails_from_go_loans">I AGREE TO RECEIVE PROMOTIONAL MAILS FROM GO LOANS</string>
+    <string name="share_my_file_to_lenders">Share my File and Contact Information with the Lenders</string>
+    <string name="share_my_file_to_applicants">Share my File and Contact Information with the Loan Applicants</string>
+    <string name="i_agree_to_receive">I AGREE TO RECEIVE PROMOTIONAL MAILS FROM GO LOANS</string>
     <string name="enter_date_of_birth_dd_mm_yyyy">Enter Date of Birth(DD/MM/YYYY)</string>
     <string name="enter_last_name">Enter Last Name*</string>
     <string name="enter_first_name">Enter First Name *</string>
     <string name="eligibility_check">ELIGIBILITY CHECK</string>
     <string name="complete_the_details_below_to_check_your_loan_eligibility_go_loans_will_provide_you_with_a_loan_offer_in_just_5_mins_we_specialize_in_bad_credit_loans_loan_for_self_employed_and_businessman">Complete the Details below to check your Loan Eligibility. Go Loans will provide you with a Loan Offer in just 5 Mins. We specialize in Bad Credit Loans, Loan for Self Employed and Businessman.</string>
-    <string name="is_your_loan_application_getting_rejected_by_banks_and_nbfc_s">Is your loan application getting rejected by Banks and NBFC\'s ?</string>
+    <string name="loan_application_rejected">Is your loan application getting rejected by Banks and NBFC\'s ?</string>
     <string name="complete_your_loan_application_with_us_we_will_forward_your_application_to_all_our_registered_lender_so_that_they_can_approve_your_loan_appliaction_online">Complete Your Loan Application with us. We will forward your application to all our registered Lender so that they can Approve your Loan Appliaction online</string>
     <string name="apply_loan_with_us">APPLY LOAN WITH US</string>
     <string name="about_us">About Us</string>
@@ -33,13 +34,19 @@
     <string name="enter_pincode">Enter Pincode</string>
     <string name="enter_aadhar_card_number">Enter Aadhar Card Number</string>
     <string name="enter_pan_number">Enter PAN number</string>
-    <string name="lend_money_interface">Lend Money Interface</string>
+    <string name="lend_money_interface">Become a lender and earn huge profits</string>
     <string name="your_name">Your name</string>
     <string name="your_profile">Your Profile</string>
     <string name="your_phone_number">Your Phone Number</string>
     <string name="your_email">Your email</string>
     <string name="logout">Logout</string>
     <string name="profile_picture">Profile Picture</string>
+    <string name="total_money_you_can_loan">Total Money You can Loan</string>
+    <string name="expected_rate_of_interest_1_27_per_year">Expected Rate of Interest(1-27 % per year)</string>
+    <string name="lender_registration_form_part_3_3">Lender Registration Form (part 3/3)</string>
+    <string name="clear">clear</string>
+    <string name="lender_registration_form_part_2_3">Lender Registration Form ( part 2/3)</string>
+    <string name="homebtn">HomeBtn</string>
 
     <string-array name="gender">
         <item>Gender</item>

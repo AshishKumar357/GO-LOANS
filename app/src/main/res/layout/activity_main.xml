@@ -7,6 +7,18 @@
     android:background="@drawable/download"
     tools:context=".MainActivity">
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewMain2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
     <Button
         android:id="@+id/logoutbtn"
         android:layout_width="200dp"
@@ -78,28 +90,19 @@
         app:layout_constraintTop_toBottomOf="@+id/adViewMain1" />
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/adViewMain2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-4198122205168696~1070741929"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.gms.ads.AdView
         android:id="@+id/adViewMain1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-4198122205168696/6131496915"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/toolbar1"
+        layout="@layout/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

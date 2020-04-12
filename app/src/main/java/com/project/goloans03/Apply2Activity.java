@@ -73,11 +73,11 @@ public class Apply2Activity extends AppCompatActivity {
                 } else if (pincode.isEmpty() || isValidPincode(pincode)) {
                     applyPincode.setError("Please Enter a valid Pincode");
                 } else if (aadharNo.isEmpty() || isValidAadhaarNo(aadharNo)) {
-                    applyPhno.setError("Please Enter a valid Aadhar Number");
+                    applyAdhno.setError("Please Enter a valid Aadhar Number");
 
                 } else if (panNo.isEmpty()) {
 
-                    applyAddress.setError("PAN number Field is Compulsory ");
+                    applyPANno.setError("PAN number Field is Compulsory ");
                 } else {
                     userID = Objects.requireNonNull(fauth.getCurrentUser()).getUid();
                     DocumentReference documentReference = fstore.collection("Applications").document(userID);

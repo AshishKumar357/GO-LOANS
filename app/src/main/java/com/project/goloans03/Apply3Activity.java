@@ -48,7 +48,7 @@ public class Apply3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_apply3);
 
         dob = findViewById(R.id.applyDOB);
-        genderSpinner = findViewById(R.id.spinnerGender);
+        genderSpinner = findViewById(R.id.spinnerGenderApply);
         spinnerSalaryType = findViewById(R.id.spinnerSalaryType);
         spinnerLoanType = findViewById(R.id.spinnerLoanType);
         proBtn = findViewById(R.id.SubmitBtn);

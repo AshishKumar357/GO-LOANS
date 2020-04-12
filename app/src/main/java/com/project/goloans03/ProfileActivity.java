@@ -154,8 +154,6 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
                 Toast.makeText(ProfileActivity.this, "Ad closed", Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "Ad Closed");
             }
